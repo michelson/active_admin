@@ -119,7 +119,9 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          chain.send(Kaminari.config.page_method_name, params[:page]).per(per_page)
+          #chain.send(Kaminari.config.page_method_name, params[:page]).per(per_page)
+          #chain.send(:page, params[:page]).per(per_page)
+          chain.send(:paginate, {:page => params[:page], :per_page => per_page})
         end
 
         def per_page
